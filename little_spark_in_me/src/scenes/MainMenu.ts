@@ -47,14 +47,6 @@ export class MainMenu extends Scene
             }
           );
 
-        // this.logo = this.add.image(512, 300, 'logo');
-
-        // this.title = this.add.text(window.innerWidth/2, window.innerHeight/2, 'Start Game', {
-        //     fontFamily: 'Dejavu', fontSize: 100, color: '#ffffff',
-        //     stroke: '#000000', strokeThickness: 8,
-        //     align: 'center'
-        // }).setOrigin(0.5);
-
         this.new.once('pointerdown', () => {
 
             this.scene.start('Game');
