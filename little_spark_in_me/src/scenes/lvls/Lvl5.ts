@@ -1,23 +1,25 @@
 import { LvlPrototype } from '../LvlPrototype'
 
-export class Lvl1 extends LvlPrototype
+export class Lvl5 extends LvlPrototype
 {
     text: any; 
+    playerCanMove: boolean = true;
     platforms: any;
     player: any;
     kid: any;
     cursors: any;
+    spikes: any;
 
     constructor ()
     {
-        super('lvl1', true);
+        super('lvl5', true);
     }
 
     create ()
     {
-        this.text = this.add.text(100, 100, 'Level 1', { fontSize: '32px', color: '#fff' });
+        this.text = this.add.text(this.makeScale(100), this.makeScale(100), 'Level 5', { fontSize: '32px', color: '#fff' });
         this.text.depth = 101
-
+        
         this.constructTheSceene()
 
         this.platforms = this.physics.add.staticGroup()
@@ -34,7 +36,20 @@ export class Lvl1 extends LvlPrototype
         this.physics.add.collider(this.kid, this.platforms);
 
         this.physics.add.overlap(this.player, this.kid, () => {
-            this.scene.start('lvl2', {
+            this.scene.start('lvl6', {
+                usedSpark: this.playerUsedSpark,
+                rest: this.playerMadeRest
+            });
+        }, null, this);
+
+        this.spikes = this.physics.add.staticGroup()
+        this.spikes.create(window.innerWidth/2 - this.makeScale(300), window.innerHeight - this.makeScale(50), 'spikes').setScale(this.makeScale(1)).refreshBody();
+        this.spikes.create(window.innerWidth/2 - this.makeScale(100), window.innerHeight - this.makeScale(50), 'spikes').setScale(this.makeScale(1)).refreshBody();
+        this.spikes.create(window.innerWidth/2 + this.makeScale(200), window.innerHeight - this.makeScale(50), 'spikes').setScale(this.makeScale(1)).refreshBody();
+
+        this.physics.add.overlap(this.player, this.spikes, () => {
+            this.scene.start('Hurt', { 
+                lvl: 'lvl5',
                 usedSpark: this.playerUsedSpark,
                 rest: this.playerMadeRest
             });
