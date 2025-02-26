@@ -39,6 +39,7 @@ export class Preloader extends Scene
         this.load.image('kid', 'kid.jpg');
         this.load.image('obsticle', 'obsticle.jpg');
         this.load.image('obstacle_high', 'obstacle_high.jpg');
+        this.load.image('instruction', 'instruction.jpg');
         this.load.image('spikes', 'spikes.png');
         this.load.image('enemy', 'enemy.png');
         this.load.image('enemy_right', 'enemy_right.png');
@@ -52,6 +53,6 @@ export class Preloader extends Scene
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
         this.scene.start('MainMenu');
-        // this.scene.start('lvl20');
+        // this.scene.start('Controls');
     }
 }

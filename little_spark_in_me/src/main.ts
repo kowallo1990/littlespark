@@ -2,6 +2,7 @@ import { Boot } from './scenes/Boot';
 import { Game as MainGame } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
+import { Controls } from './scenes/Controls';
 import { Preloader } from './scenes/Preloader';
 import { Hurt } from './scenes/Hurt';
 import { HurtEnemy } from './scenes/HurtEnemy';
@@ -54,6 +55,7 @@ const config: Types.Core.GameConfig = {
         MainMenu,
         MainGame,
         GameOver,
+        Controls,
         Hurt,
         HurtEnemy,
         Weaker,
