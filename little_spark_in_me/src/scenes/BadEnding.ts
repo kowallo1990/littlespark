@@ -1,19 +1,20 @@
 import { Scene } from 'phaser';
 import { textFade } from '../js/common';
 
-export class HurtEnemy extends Scene
+export class BadEnding extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
     msg_text_1 : Phaser.GameObjects.Text;
     msg_text_2 : Phaser.GameObjects.Text;
-    continue : Phaser.GameObjects.Text;
+    rest : Phaser.GameObjects.Text;
     level: string;
     playerUsedSpark: boolean;
     playerMadeRest: boolean;
     playerWasOnWeak: boolean;
+
     constructor ()
     {
-        super('HurtEnemy');
+        super('BadEnding');
     }
 
     init (data: any)
@@ -29,14 +30,15 @@ export class HurtEnemy extends Scene
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor('#000')
 
-        textFade(this.msg_text_1, 100, 'You are not the only one who live in the dark', 0, this)
-        textFade(this.msg_text_2, 180, 'You should be more carefull', 2000, this)
+        textFade(this.msg_text_1, 100, 'You found the last child cold and lifeless', 0, this)
+        textFade(this.msg_text_2, 180, 'You spent too much time resting', 2000, this)
+        textFade(this.msg_text_2, 260, 'These are the consequences of your choices', 4000, this)
 
         setTimeout(() => {
-            this.continue = this.make.text({
+            this.rest = this.make.text({
                 x: window.innerWidth/2,
                 y: 700,
-                text: 'Continue',
+                text: 'Main menu',
                 origin: { x: 0.5, y: 0.5 },
                 style:  {
                     fontFamily: 'Arial Black', fontSize: 70, color: '#ffffff',
@@ -47,7 +49,7 @@ export class HurtEnemy extends Scene
             });
 
             this.tweens.add({
-                targets: this.continue,
+                targets: this.rest,
                 alpha: { from: 0, to: 1 },
                 ease: 'Sine.InOut',
                 duration: 2000,
@@ -55,33 +57,31 @@ export class HurtEnemy extends Scene
             });
 
             
-            this.continue.setInteractive()
+            this.rest.setInteractive()
 
-            this.continue.on(
+            this.rest.on(
                 "pointerover",
                 () => {
-                    this.continue.scaleX = 1.1
-                    this.continue.scaleY = 1.1
+                    this.rest.scaleX = 1.1
+                    this.rest.scaleY = 1.1
                 }
             );
 
-            this.continue.on(
+            this.rest.on(
                 "pointerout",
                 () => {
-                    this.continue.scaleX = 1
-                    this.continue.scaleY = 1
+                    this.rest.scaleX = 1
+                    this.rest.scaleY = 1
                 }
             );
 
-            this.continue.once('pointerdown', () => {
+            this.rest.once('pointerdown', () => {
 
-                this.scene.start(this.level, {
-                    usedSpark: this.playerUsedSpark,
-                    rest: this.playerMadeRest,
-                    wasOnWeak: this.playerWasOnWeak
-                });
+                this.scene.start('MainMenu');
     
             });
-        }, 4000)
+
+            
+        }, 6000)
     }
 }

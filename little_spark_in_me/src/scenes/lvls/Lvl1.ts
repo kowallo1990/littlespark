@@ -15,7 +15,9 @@ export class Lvl1 extends LvlPrototype
 
     create ()
     {
-        this.text = this.add.text(100, 100, 'Level 1', { fontSize: '32px', color: '#fff' });
+        this.playerUsedSpark = false;
+        
+        this.text = this.add.text(this.makeScale(100), this.makeScale(100), 'Level 1', { fontSize: '32px', color: '#fff' });
         this.text.depth = 101
 
         this.constructTheSceene()
@@ -36,7 +38,8 @@ export class Lvl1 extends LvlPrototype
         this.physics.add.overlap(this.player, this.kid, () => {
             this.scene.start('lvl2', {
                 usedSpark: this.playerUsedSpark,
-                rest: this.playerMadeRest
+                rest: false,
+                wasOnWeak: false
             });
         }, null, this);
     }

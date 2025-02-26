@@ -9,6 +9,7 @@ export class Weaker extends Scene
     continue : Phaser.GameObjects.Text;
     playerUsedSpark: boolean;
     playerMadeRest: boolean;
+    playerWasOnWeak: boolean;
 
     constructor ()
     {
@@ -19,6 +20,7 @@ export class Weaker extends Scene
     {
         this.playerUsedSpark = data.usedSpark ? data.usedSpark :  false;
         this.playerMadeRest = data.rest ? data.rest : false;
+        this.playerWasOnWeak = data.wasOnWeak ? data.wasOnWeak : false
     }
 
     create ()
@@ -72,9 +74,10 @@ export class Weaker extends Scene
 
             this.continue.once('pointerdown', () => {
 
-                this.scene.start( 'lvl11', {
+                this.scene.start('lvl11', {
                     usedSpark: this.playerUsedSpark,
-                    rest: this.playerMadeRest
+                    rest: this.playerMadeRest,
+                    wasOnWeak: true
                 });
     
             });

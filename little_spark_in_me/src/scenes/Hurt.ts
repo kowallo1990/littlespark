@@ -10,6 +10,7 @@ export class Hurt extends Scene
     level: string;
     playerUsedSpark: boolean;
     playerMadeRest: boolean;
+    playerWasOnWeak: boolean;
 
     constructor ()
     {
@@ -21,6 +22,7 @@ export class Hurt extends Scene
         this.level = data.lvl;
         this.playerUsedSpark = data.usedSpark ? data.usedSpark :  false;
         this.playerMadeRest = data.rest ? data.rest : false;
+        this.playerWasOnWeak = data.wasOnWeak ? data.wasOnWeak : false
     }
 
     create ()
@@ -76,7 +78,8 @@ export class Hurt extends Scene
 
                 this.scene.start(this.level, {
                     usedSpark: this.playerUsedSpark,
-                    rest: this.playerMadeRest
+                    rest: this.playerMadeRest,
+                    wasOnWeak: this.playerWasOnWeak
                 });
     
             });

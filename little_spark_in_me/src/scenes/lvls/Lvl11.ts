@@ -20,7 +20,7 @@ export class Lvl11 extends LvlPrototype
         this.text = this.add.text(this.makeScale(100), this.makeScale(100), 'Level 11', { fontSize: '32px', color: '#fff' });
         this.text.depth = 101
         
-        this.constructTheSceene(1200)
+        this.constructTheSceene(this.playerWasOnWeak ? 1200 : 2500)
 
         this.platforms = this.physics.add.staticGroup()
         this.platforms.create(window.innerWidth/2, window.innerHeight, 'ground_long').setScale(this.makeScale(1)).refreshBody();
@@ -42,7 +42,8 @@ export class Lvl11 extends LvlPrototype
         this.physics.add.overlap(this.player, this.kid, () => {
             this.scene.start('lvl12', {
                 usedSpark: this.playerUsedSpark,
-                rest: this.playerMadeRest
+                rest: this.playerMadeRest,
+                wasOnWeak: this.playerWasOnWeak
             });
         }, null, this);
 
@@ -56,7 +57,8 @@ export class Lvl11 extends LvlPrototype
             this.scene.start('Hurt', { 
                 lvl: 'lvl11',
                 usedSpark: this.playerUsedSpark,
-                rest: this.playerMadeRest
+                rest: this.playerMadeRest,
+                wasOnWeak: this.playerWasOnWeak
                 });
         }, null, this);
     }

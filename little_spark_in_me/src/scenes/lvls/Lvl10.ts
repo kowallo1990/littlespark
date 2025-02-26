@@ -40,9 +40,10 @@ export class Lvl10 extends LvlPrototype
         this.physics.add.collider(this.kid, this.platforms);
 
         this.physics.add.overlap(this.player, this.kid, () => {
-            this.scene.start('Weaker', {
+            this.scene.start(this.playerUsedSpark ? 'Weaker' : 'lvl11', {
                 usedSpark: this.playerUsedSpark,
                 rest: this.playerMadeRest,
+                wasOnWeak: this.playerUsedSpark
             });
         }, null, this);
 

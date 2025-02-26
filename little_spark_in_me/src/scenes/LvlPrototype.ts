@@ -5,6 +5,7 @@ export class LvlPrototype extends Scene
         playerCanMove: boolean;
         playerUsedSpark: boolean;
         playerMadeRest: boolean;
+        playerWasOnWeak: boolean
 
         constructor (key: string, playerMove: boolean)
     {
@@ -16,6 +17,7 @@ export class LvlPrototype extends Scene
     {
         this.playerUsedSpark = data.usedSpark ? data.usedSpark :  false;
         this.playerMadeRest = data.rest ? data.rest : false;
+        this.playerWasOnWeak = data.wasOnWeak ? data.wasOnWeak : false
     }
 
     create ()
