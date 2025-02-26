@@ -20,7 +20,7 @@ export class Lvl18 extends LvlPrototype
         this.text = this.add.text(this.makeScale(100), this.makeScale(100), 'Level 18', { fontSize: '32px', color: '#fff' });
         this.text.depth = 101
         
-        this.constructTheSceene()
+        this.constructTheSceene(this.playerMadeRest ? 700 : 1200)
 
         this.platforms = this.physics.add.staticGroup()
         this.platforms.create(window.innerWidth/2, window.innerHeight, 'ground_long').setScale(this.makeScale(1)).refreshBody();

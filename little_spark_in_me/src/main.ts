@@ -9,6 +9,9 @@ import { LvlPrototype } from './scenes/LvlPrototype'
 import { Weaker } from './scenes/Weaker';
 import { Choice } from './scenes/Choice';
 import { BadEnding } from './scenes/BadEnding';
+import { GoodEnding } from './scenes/GoodEnding';
+import { BestEnding } from './scenes/BestEnding';
+import { Chance } from './scenes/Chance';
 import { Lvl1 } from './scenes/lvls/Lvl1';
 import { Lvl2 } from './scenes/lvls/Lvl2';
 import { Lvl3 } from './scenes/lvls/Lvl3';
@@ -55,8 +58,11 @@ const config: Types.Core.GameConfig = {
         HurtEnemy,
         Weaker,
         Choice,
+        Chance,
         LvlPrototype,
         BadEnding,
+        GoodEnding,
+        BestEnding,
         Lvl1,
         Lvl2,
         Lvl3,

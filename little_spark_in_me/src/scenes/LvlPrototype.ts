@@ -24,8 +24,8 @@ export class LvlPrototype extends Scene
     {
     }
 
-    useTheSpark(black: any, time: number) {
-        if (!this.playerCanMove) return 
+    useTheSpark(black: any, time: number, canUseSpark: boolean) {
+        if (!this.playerCanMove || !canUseSpark) return 
 
         this.playerUsedSpark = true;
 
@@ -53,7 +53,7 @@ export class LvlPrototype extends Scene
         }, time)
     }
 
-    constructTheSceene(time:number = 2000) {
+    constructTheSceene(time:number = 2000, canUseSpark:boolean = true) {
         let camera = this.cameras.main;
         camera.setBackgroundColor('#fff')
 
@@ -70,7 +70,7 @@ export class LvlPrototype extends Scene
         black.depth = 100;
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            this.useTheSpark(black, time)
+            this.useTheSpark(black, time, canUseSpark)
         })
     }
 
@@ -82,13 +82,13 @@ export class LvlPrototype extends Scene
     createMovement(player: any, cursors: any) {
         if(player && cursors) {
             if (cursors.left.isDown 
-                // && this.playerCanMove
+                && this.playerCanMove
             )
                 {
                     player.setVelocityX(-500);
                 }
             else if (cursors.right.isDown 
-                // && this.playerCanMove
+                && this.playerCanMove
             )
                 {
                     player.setVelocityX(500);
@@ -99,7 +99,7 @@ export class LvlPrototype extends Scene
                 }
             
             if (cursors.up.isDown && player.body.touching.down 
-                // && this.playerCanMove
+                && this.playerCanMove
             )
                 {
                     player.setVelocityY(-330);
@@ -110,7 +110,7 @@ export class LvlPrototype extends Scene
     createEnemyAnimation() {
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 1 }),
+            frames: this.anims.generateFrameNumbers('enemy', { start: 0, end: 1 }),
             frameRate: 1,
             repeat: -1
         });
@@ -125,13 +125,13 @@ export class LvlPrototype extends Scene
 
     createEnemyBoundaries(enemy: any, enemyBlocksLeft: any, enemyBlocksRight: any, leftX: number, leftY: number, rightX: number, rightY: number) {
         enemyBlocksLeft = this.physics.add.staticGroup()
-        enemyBlocksLeft.create(leftX,leftY, 'aaa').setScale(this.makeScale(1)).refreshBody();
+        enemyBlocksLeft.create(leftX,leftY, 'enemy_boundary').setScale(this.makeScale(1)).refreshBody();
         this.physics.add.collider(enemy, enemyBlocksLeft, () => {
             enemy.setVelocityX(160)
         });
 
         enemyBlocksRight = this.physics.add.staticGroup()
-        enemyBlocksRight.create(rightX, rightY, 'aaa').setScale(this.makeScale(1)).refreshBody();
+        enemyBlocksRight.create(rightX, rightY, 'enemy_boundary').setScale(this.makeScale(1)).refreshBody();
         this.physics.add.collider(enemy, enemyBlocksRight, () => {
             enemy.setVelocityX(-160)
         });        
