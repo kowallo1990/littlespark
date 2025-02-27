@@ -36,7 +36,7 @@ export class Lvl19 extends LvlPrototype
         this.physics.add.collider(this.kid, this.platforms);
 
         this.physics.add.overlap(this.player, this.kid, () => {
-            this.scene.start(this.playerUsedSpark ? 'Chance' : 'GoodEnding', {
+            this.scene.start(this.playerUsedSpark ? 'GoodEnding' : 'Chance', {
                 usedSpark: this.playerUsedSpark,
                 rest: this.playerMadeRest,
                 wasOnWeak: this.playerWasOnWeak
