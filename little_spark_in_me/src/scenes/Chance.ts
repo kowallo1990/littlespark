@@ -33,7 +33,7 @@ export class Chance extends Scene
         textFade(this.msg_text_1, 100, 'You never used a spark', 0, this)
         textFade(this.msg_text_2, 180, 'You are a true creature of darkness', 2000, this)
         textFade(this.msg_text_2, 260, 'The gods of darkness appreciated your efforts', 4000, this)
-        textFade(this.msg_text_2, 320, 'They give you a chance to save your last loss - your wife.', 6000, this)
+        textFade(this.msg_text_2, 340, 'They give you a chance to save your last loss - your wife.', 6000, this)
 
         setTimeout(() => {
             this.continue = this.make.text({
@@ -85,6 +85,6 @@ export class Chance extends Scene
                 });
     
             });
-        }, 4000)
+        }, 8000)
     }
 }
